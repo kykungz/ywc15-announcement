@@ -52,6 +52,8 @@ export default {
     // const result = await axios.get('https://ywc15.ywc.in.th/static/announcement.json')
     // console.log(result)
     const filterMajor = (major) => result.filter(candidate => candidate.major === major)
+        .sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
+
     this.candidates = {
       content: filterMajor('content'),
       design: filterMajor('design'),
@@ -68,7 +70,9 @@ export default {
     filtered () {
       if (this.search) {
         return result.filter(candidate =>
-          Object.keys(candidate).some(key => candidate[key].includes(this.search))
+          Object.keys(candidate).some(key => candidate[key]
+              .toLowerCase()
+              .includes(this.search.toLowerCase()))
         )
       }
       return this.candidates
@@ -93,7 +97,7 @@ export default {
   color: darkgray;
   cursor: pointer;
   top: 13px;
-  right: 20px;
+  right: 16px;
   z-index: 3;
   transition: color 200ms;
 }
@@ -104,7 +108,8 @@ export default {
 
 .form-control.rounded {
   border-radius: 0 20px 20px 0 !important;
-  padding-right: 46px !important;
+  padding-right: 42px !important;
+  /*font-size: 1.2em;*/
 }
 
 .input-group-addon.rounded {
