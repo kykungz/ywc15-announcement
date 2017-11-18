@@ -6,7 +6,12 @@
       </h2>
       <hr>
     </div>
-    {{ this.list }}
+    <h3 v-if="this.list.length <= 0" style="margin-top: 40px" class="text-center text-muted">
+      ขออภัยไม่พบข้อมูลผู้สมัคร พบกันใหม่ปีหน้านะครับ !
+    </h3>
+    <div v-else>
+      {{ this.list }}
+    </div>
   </div>
 </template>
 

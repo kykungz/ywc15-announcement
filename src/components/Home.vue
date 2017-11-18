@@ -19,9 +19,8 @@
     </div>
   </div>
 
-  <list v-show="search" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
-
-  <div v-show="!search">
+  <list v-if="search" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
+  <div v-else>
     <list major="Web Content" :list="candidates.content"></list>
     <list major="Web Design" :list="candidates.design"></list>
     <list major="Web Marketing" :list="candidates.marketing"></list>
