@@ -1,12 +1,12 @@
 <template>
-<div class="home container">
+<div class="home">
   <div class="text-center">
     <h1 class="display-4">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h1>
     <h2>โครงการ Young Webmaster Camp 15</h2>
   </div>
 
   <div class="search-bar sticky-top">
-    <div class="input-group input-group-lg position-relative">
+    <div class="container input-group input-group-lg position-relative">
       <span class="input-group-addon rounded">
         <icon name="search"></icon>
       </span>
@@ -19,12 +19,12 @@
     </div>
   </div>
 
-  <list v-if="search" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
-  <div v-else>
-    <list major="Web Content" :list="candidates.content"></list>
-    <list major="Web Design" :list="candidates.design"></list>
-    <list major="Web Marketing" :list="candidates.marketing"></list>
-    <list major="Web Programming" :list="candidates.programming"></list>
+  <list v-show="search" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
+  <div v-show="!search">
+    <list major="Web Content" img="src/assets/content.png" :list="candidates.content"></list>
+    <list major="Web Design" img="src/assets/design.png" :list="candidates.design"></list>
+    <list major="Web Marketing" img="src/assets/marketing.png" :list="candidates.marketing"></list>
+    <list major="Web Programming" img="src/assets/programming.png" :list="candidates.programming"></list>
   </div>
 
 </div>
@@ -39,7 +39,7 @@ export default {
   components: { List },
   data () {
     return {
-      search: '',
+      search: this.$route.query.id || '',
       candidates: {
         content: [],
         design: [],
@@ -75,7 +75,7 @@ export default {
               .includes(this.search.toLowerCase()))
         )
       }
-      return this.candidates
+      return []
     }
   }
 }
@@ -86,8 +86,17 @@ export default {
   margin-top: 40px;
 }
 
+.dark-bg {
+  background: rgb(57, 57, 57);
+  border-radius: 8px;
+}
+
+.white {
+  color: #eeeeee;
+}
+
 .search-bar {
-  padding: 30px 0;
+  padding: 30px 0 10px 0;
   margin-bottom: 20px;
   background: white;
 }
@@ -97,7 +106,7 @@ export default {
   color: darkgray;
   cursor: pointer;
   top: 13px;
-  right: 16px;
+  right: 30px;
   z-index: 3;
   transition: color 200ms;
 }
@@ -109,15 +118,10 @@ export default {
 .form-control.rounded {
   border-radius: 0 20px 20px 0 !important;
   padding-right: 42px !important;
-  /*font-size: 1.2em;*/
 }
 
 .input-group-addon.rounded {
   border-radius: 20px 0 0 20px !important;
   padding-left: 16px !important;
-}
-
-.form-control.rounded::after {
-  content: 'hi';
 }
 </style>

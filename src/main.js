@@ -7,11 +7,17 @@ import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-awesome/icons'
+import SocialSharing from 'vue-social-sharing'
 
 import Icon from 'vue-awesome/components/Icon'
 import BootstrapVue from 'bootstrap-vue'
+import { Tabs, Tab } from 'vue-tabs-component'
 
+Vue.use(SocialSharing)
 Vue.use(BootstrapVue)
+
+Vue.component('tabs', Tabs)
+Vue.component('tab', Tab)
 Vue.component('icon', Icon)
 
 Vue.config.productionTip = false
