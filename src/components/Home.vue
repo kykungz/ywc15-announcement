@@ -2,7 +2,7 @@
 <div class="home">
   <div class="text-center">
     <h1 class="display-4">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h1>
-    <h2>โครงการ Young Webmaster Camp 15</h2>
+    <h2>โครงการ Young Webmaster Camp 15<sup>th</sup></h2>
   </div>
 
   <div class="search-bar sticky-top">
