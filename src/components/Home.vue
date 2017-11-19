@@ -123,7 +123,7 @@ export default {
 
 .full-height {
   min-height: 100vh;
-  background: url("../../static/images/bg-front.png") repeat, url("../../static/images/bg.png") repeat;
+  background: url("/static/images/bg-front.png") repeat, url("/static/images/bg.png") repeat;
   background-size: contain;
   color: white;
 }
