@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="text-center">
-      <img class="img-fluid logo" src="./assets/logo-black.png" alt="">
+      <img class="img-fluid logo" src="static/images/logo-black.png" alt="">
     </div>
     <router-view/>
   </div>
@@ -18,11 +18,10 @@ export default {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   /*color: #dddddd;*/
   font-family: 'Kanit', sans-serif;
-
 }
 
 .logo {
-  height: 90px;
+  max-height: 90px;
   margin: 20px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div class="home">
-  <div class="text-center">
+  <div class="text-center container">
     <h1 class="display-4">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h1>
     <h2>โครงการ Young Webmaster Camp 15<sup>th</sup></h2>
   </div>
@@ -21,10 +21,10 @@
 
   <list v-show="search" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
   <div v-show="!search">
-    <list major="Web Content" img="src/assets/content.png" :list="candidates.content"></list>
-    <list major="Web Design" img="src/assets/design.png" :list="candidates.design"></list>
-    <list major="Web Marketing" img="src/assets/marketing.png" :list="candidates.marketing"></list>
-    <list major="Web Programming" img="src/assets/programming.png" :list="candidates.programming"></list>
+    <list major="Web Content" img="static/images/content.png" :list="candidates.content"></list>
+    <list major="Web Design" img="static/images/design.png" :list="candidates.design"></list>
+    <list major="Web Marketing" img="static/images/marketing.png" :list="candidates.marketing"></list>
+    <list major="Web Programming" img="static/images/programming.png" :list="candidates.programming"></list>
   </div>
 
 </div>
