@@ -14,6 +14,7 @@
         </div>
     </b-modal>
 
+
     <div class="major">
       <div class="container">
         <h2>
@@ -23,7 +24,10 @@
         <hr>
       </div>
     </div>
-    <h3 v-show="list.length <= 0" style="margin-top: 40px" class="text-center text-muted">
+
+    <pulse-loader class="text-center" :loading="loading" color="orange"></pulse-loader>
+
+    <h3 v-show="list.length <= 0 && !loading" style="margin-top: 40px" class="text-center text-muted">
       ขออภัย ไม่พบข้อมูลผู้สมัคร พบกันใหม่ปีหน้านะครับ !
     </h3>
     <div v-show="list.length > 0" class="container mytable">
@@ -74,9 +78,12 @@
 
 <script>
 import { BASE_URL } from '@/libraries/constants'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+
 export default {
   name: 'List',
-  props: ['major', 'list', 'img'],
+  props: ['major', 'list', 'img', 'loading'],
+  components: { PulseLoader },
   data () {
     return {
       shareURL: ''
@@ -109,7 +116,7 @@ export default {
 .major {
   position: sticky;
   top: 80px;
-  background: white;
+  background: linear-gradient(to bottom, white, white, rgba(255, 255, 255, 0.9));
   word-wrap: break-word;
   padding-top: 10px;
   z-index: 30;

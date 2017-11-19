@@ -19,12 +19,12 @@
     </div>
   </div>
 
-  <list v-show="search" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
+  <list v-show="search" :loading="loading" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
   <div v-show="!search">
-    <list major="Web Content" img="static/images/content.png" :list="candidates.content"></list>
-    <list major="Web Design" img="static/images/design.png" :list="candidates.design"></list>
-    <list major="Web Marketing" img="static/images/marketing.png" :list="candidates.marketing"></list>
-    <list major="Web Programming" img="static/images/programming.png" :list="candidates.programming"></list>
+    <list :loading="loading" major="Web Content" img="static/images/content.png" :list="candidates.content"></list>
+    <list :loading="loading" major="Web Design" img="static/images/design.png" :list="candidates.design"></list>
+    <list :loading="loading" major="Web Marketing" img="static/images/marketing.png" :list="candidates.marketing"></list>
+    <list :loading="loading" major="Web Programming" img="static/images/programming.png" :list="candidates.programming"></list>
   </div>
 
 </div>
@@ -40,14 +40,15 @@ export default {
   components: { List },
   data () {
     return {
+      loading: true,
       result: [],
       search: this.$route.query.id || '',
       exclude: this.decode(this.$route.query.result) || ''
     }
   },
   async mounted () {
-    const result = (await axios.get(API_URL)).data
-    this.result = result
+    this.result = (await axios.get(API_URL)).data
+    this.loading = false
   },
   computed: {
     candidates () {
