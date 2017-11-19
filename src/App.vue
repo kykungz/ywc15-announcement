@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="text-center">
-      <img class="img-fluid logo" src="static/images/logo-black.png" alt="">
+      <img style="max-height: 90px; margin: 20px;" class="img-fluid logo" src="static/images/logo-black.png" alt="">
     </div>
     <router-view/>
   </div>
