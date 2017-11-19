@@ -69,9 +69,4 @@ export default {
   width: 100%;
   height: 300px;
 }
-
-/*mark {
-  background-color: rgba(255, 222, 1, 0.6);
-}*/
-
 </style>

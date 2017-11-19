@@ -96,11 +96,6 @@ export default {
       return this.list.length === 1
     }
   },
-  watch: {
-    '$route.query' (query) {
-      this.$refs.shareModel.hide()
-    }
-  },
   methods: {
     share (id) {
       this.shareURL = BASE_URL + `?id=${id}`
@@ -109,6 +104,11 @@ export default {
     copy () {
       this.$refs.shareURL.select()
       document.execCommand('Copy')
+    }
+  },
+  watch: {
+    '$route.query' (query) {
+      this.$refs.shareModel.hide()
     }
   }
 }

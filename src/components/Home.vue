@@ -43,24 +43,29 @@
     <list :loading="loading" major="Web Marketing" img="static/images/marketing.png" :list="candidates.marketing"></list>
     <list :loading="loading" major="Web Programming" img="static/images/programming.png" :list="candidates.programming"></list>
   </div>
+
+  <prank></prank>
+
 </div>
 </template>
 
 <script>
 import axios from 'axios'
 import { API_URL } from '@/libraries/constants'
+import { decrypt } from '@/libraries/functions'
 import List from '@/components/List'
 import Place from '@/components/Place'
+import Prank from '@/components/Prank'
 
 export default {
   name: 'Home',
-  components: { List, Place },
+  components: { List, Place, Prank },
   data () {
     return {
       loading: true,
       result: [],
       search: this.$route.query.id || '',
-      exclude: this.decode(this.$route.query.result) || ''
+      exclude: decrypt(this.$route.query.result) || ''
     }
   },
   async mounted () {
@@ -100,20 +105,12 @@ export default {
       return this.result.filter(candidate =>
         candidate.major === major && candidate.interviewRef !== this.exclude
       ).sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
-    },
-    encode (id) {
-      return id.split('').map(letter => letter.charCodeAt(0) - 20).join('')
-    },
-    decode (id) {
-      return id
-        ? id.match(/.{1,2}/g).map(letter => String.fromCharCode(parseInt(letter) + 20)).join('')
-        : undefined
     }
   },
   watch: {
     '$route.query' (query) {
       this.search = query.id || ''
-      this.exclude = this.decode(query.result) || ''
+      this.exclude = decrypt(query.result) || ''
     }
   }
 }
