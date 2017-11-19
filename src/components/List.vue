@@ -24,7 +24,7 @@
       </div>
     </div>
     <h3 v-show="list.length <= 0" style="margin-top: 40px" class="text-center text-muted">
-      ขออภัยไม่พบข้อมูลผู้สมัคร พบกันใหม่ปีหน้านะครับ !
+      ขออภัย ไม่พบข้อมูลผู้สมัคร พบกันใหม่ปีหน้านะครับ !
     </h3>
     <div v-show="list.length > 0" class="container mytable">
       <table class="table table-sm">
@@ -38,8 +38,8 @@
             <th scope="col">แชร์</th>
           </tr>
         </thead>
-        <tbody>
-          <tr tabindex="1"class="tr-content" v-for="candidate in list">
+        <tbody :class="{ cheer: isFound }">
+          <tr tabindex="1" onclick="this.focus()" class="tr-content" v-for="candidate in list">
             <td>{{ candidate.interviewRef }}</td>
             <td>{{ candidate.firstName }}</td>
             <td>{{ candidate.lastName }}</td>
@@ -82,6 +82,11 @@ export default {
       shareURL: ''
     }
   },
+  computed: {
+    isFound () {
+      return this.list.length === 1
+    }
+  },
   watch: {
     '$route.query' (query) {
       this.$refs.shareModel.hide()
@@ -111,7 +116,7 @@ export default {
 }
 
 hr {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 img {
@@ -144,6 +149,10 @@ thead {
   outline: none;
 }
 
+.tr-content:focus .social-icon, .tr-content:focus .share{
+  color: #333333;
+}
+
 .tr-content:hover .social-icon, .tr-content:hover .share{
   color: #333333;
 }
@@ -153,9 +162,42 @@ thead {
   transition: color 400ms;
 }
 
+.cheer {
+  background: orange;
+  font-size: 2em;
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+.cheer:hover {
+  animation: none;
+}
+
+.cheer .tr-content:focus {
+  transform: none;
+}
+
+.cheer .tr-content:hover {
+  background: rgb(255, 122, 37);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@media (max-width: 1024px) {
+  .cheer {
+    animation: none;
+    font-size: 1em;
+  }
+}
+
 @media (max-width: 400px) {
   .mytable {
     overflow-x: scroll;
   }
 }
+
 </style>

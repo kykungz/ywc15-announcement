@@ -1,12 +1,11 @@
 <template>
   <div class="app">
-    <back-to-top class="floating-button"
-      text="⌃"
-    ></back-to-top>
+    <back-to-top class="floating-button" text="⌃"></back-to-top>
 
     <div class="text-center">
       <img style="max-height: 90px; margin: 20px;" class="img-fluid logo" src="static/images/logo-black.png" alt="">
     </div>
+
     <router-view/>
   </div>
 </template>

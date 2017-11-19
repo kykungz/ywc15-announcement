@@ -64,7 +64,7 @@ export default {
           .filter(candidate =>
             Object.keys(candidate).some(key => candidate[key]
                 .toLowerCase()
-                .includes(this.search.toLowerCase())) &&
+                .includes(this.search.trim().toLowerCase())) &&
             candidate.interviewRef !== this.exclude
           )
       }
