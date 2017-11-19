@@ -1,12 +1,8 @@
 <template>
 <div class="home">
   <!-- Welcome -->
-  <!-- Use inline style to avoid webpack resolves url incorrectly -->
   <div
-    :style="{
-      background: `url('static/images/bg-front.png') repeat, url('static/images/bg.png') repeat`,
-      backgroundSize: 'contain'
-    }"
+    :style="bg"
     class="full-height">
     <div class="text-center">
       <img style="max-height: 90px; margin-top: 20px;" class="img-fluid logo" src="static/images/logo.png" alt="">
@@ -68,6 +64,11 @@ export default {
   components: { List, Place, Prank },
   data () {
     return {
+      // Use inline-style object to avoid webpack resolve incorrect URL
+      bg: {
+        background: `url('static/images/bg-front.png') repeat, url('static/images/bg.png') repeat`,
+        backgroundSize: 'contain'
+      },
       loading: true,
       result: [],
       search: this.$route.query.id || '',
