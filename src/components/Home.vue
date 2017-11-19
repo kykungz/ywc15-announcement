@@ -173,6 +173,7 @@ export default {
   padding: 30px 0 10px 0;
   margin-bottom: 20px;
   background: white;
+  z-index: 3;
 }
 
 .remove-search {
