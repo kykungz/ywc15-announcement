@@ -1,7 +1,13 @@
 <template>
 <div class="home">
   <!-- Welcome -->
-  <div class="full-height">
+  <!-- Use inline style to avoid webpack resolves url incorrectly -->
+  <div
+    :style="{
+      background: `url('static/images/bg-front.png') repeat, url('static/images/bg.png') repeat`,
+      backgroundSize: 'contain'
+    }"
+    class="full-height">
     <div class="text-center">
       <img style="max-height: 90px; margin-top: 20px;" class="img-fluid logo" src="static/images/logo.png" alt="">
     </div>
@@ -123,8 +129,6 @@ export default {
 
 .full-height {
   min-height: 100vh;
-  background: url("/static/images/bg-front.png") repeat, url("/static/images/bg.png") repeat;
-  background-size: contain;
   color: white;
 }
 
