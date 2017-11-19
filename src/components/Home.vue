@@ -1,5 +1,6 @@
 <template>
 <div class="home">
+  <!-- Welcome -->
   <div class="full-height">
     <div class="text-center">
       <img style="max-height: 90px; margin-top: 20px;" class="img-fluid logo" src="static/images/logo.png" alt="">
@@ -13,9 +14,13 @@
       </span>
     </div>
   </div>
+
+  <!-- Place -->
   <div ref="first">
     <place></place>
   </div>
+
+  <!-- Search Bar -->
   <div class="search-bar sticky-top">
     <div class="container input-group input-group-lg position-relative">
       <span class="input-group-addon rounded">
@@ -30,6 +35,7 @@
     </div>
   </div>
 
+  <!-- Candidate List -->
   <list v-show="search" :loading="loading" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
   <div v-show="!search">
     <list :loading="loading" major="Web Content" img="static/images/content.png" :list="candidates.content"></list>

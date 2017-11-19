@@ -1,83 +1,81 @@
 <template>
-  <div class="list">
-    <b-modal ref="shareModel" hide-footer title="แชร์หน้าเว็บนี้">
-        <div class="d-block text-center">
-          <h3>ลิงก์พร้อมแล้ว​ แชร์เลย!</h3>
-          <div class="input-group">
-            <input ref="shareURL" onclick="this.select()" class="form-control" type="text" :value="shareURL">
-            <span class="input-group-btn">
-              <b-btn @click="copy" v-b-tooltip.hover title="Copy to clipboard">
-                <icon name="clipboard"></icon>
-              </b-btn>
-            </span>
-          </div>
+<div class="list">
+  <b-modal ref="shareModel" hide-footer title="แชร์หน้าเว็บนี้">
+      <div class="d-block text-center">
+        <h3>ลิงก์พร้อมแล้ว​ แชร์เลย!</h3>
+        <div class="input-group">
+          <input ref="shareURL" onclick="this.select()" class="form-control" type="text" :value="shareURL">
+          <span class="input-group-btn">
+            <b-btn @click="copy" v-b-tooltip.hover title="Copy to clipboard">
+              <icon name="clipboard"></icon>
+            </b-btn>
+          </span>
         </div>
-    </b-modal>
-
-    <div class="major">
-      <div class="container">
-        <h2>
-          <img v-if="img" :src="img" class="img-fluid" width="100px" alt="">
-          {{ major }}
-        </h2>
-        <hr>
       </div>
-    </div>
+  </b-modal>
 
-    <pulse-loader class="text-center" :loading="loading" color="orange"></pulse-loader>
-
-    <h3 v-show="list.length <= 0 && !loading" style="margin-top: 40px" class="text-center text-muted">
-      ขออภัย ไม่พบข้อมูลผู้สมัคร พบกันใหม่ปีหน้านะครับ !
-    </h3>
-    <div v-show="list.length > 0" class="container mytable">
-      <table class="table table-sm">
-        <thead class="sticky">
-          <tr>
-            <td scope="col">รหัส</td>
-            <td scope="col">ชื่อจริง</td>
-            <td scope="col">นามสกุล</td>
-            <td scope="col">สาขา</td>
-            <td scope="col">เวลา</td>
-            <td scope="col">แชร์</td>
-          </tr>
-        </thead>
-        <tbody :class="{ cheer: isFound }">
-          <tr :tabindex="isFound ? null : 1"
-            onclick="this.focus()"
-            class="tr-content"
-            v-for="candidate in list"
-          >
-            <td>{{ candidate.interviewRef }}</td>
-            <td>{{ candidate.firstName }}</td>
-            <td>{{ candidate.lastName }}</td>
-            <td>
-              {{ candidate.major.substr(0, 1).toUpperCase() + candidate.major.substr(1) }}
-            </td>
-            <td>บ่าย</td>
-            <td style="padding-top: 6px">
-              <social-sharing inline-template
-                :url="`https://kykungz.github.io/ywc15-announcement/#/?id=${candidate.interviewRef}`"
-                hashtags="ywc15,YoungWebmasterCamp15"
-                class="d-inline"
-              >
-                <div class="social-icon">
-                  <network network="facebook">
-                    <icon style="cursor: pointer" name="facebook-official"></icon>
-                  </network>
-                  <network network="twitter">
-                    <icon style="cursor: pointer" name="twitter"></icon>
-                  </network>
-                </div>
-              </social-sharing>
-              <span @click="share(candidate.interviewRef)" class="d-inline share">
-                <icon style="cursor: pointer" name="share-alt"></icon>
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="major">
+    <div class="container">
+      <h2>
+        <img v-if="img" :src="img" class="img-fluid" width="100px" alt="">
+        {{ major }}
+      </h2>
+      <hr>
     </div>
   </div>
+
+  <pulse-loader class="text-center" :loading="loading" color="orange"></pulse-loader>
+
+  <h3 v-show="list.length <= 0 && !loading" style="margin-top: 40px" class="text-center text-muted">
+    ขออภัย ไม่พบข้อมูลผู้สมัคร พบกันใหม่ปีหน้านะครับ !
+  </h3>
+  <div v-show="list.length > 0" class="container mytable">
+    <table class="table table-sm">
+      <thead class="sticky">
+        <tr>
+          <td scope="col">รหัส</td>
+          <td scope="col">ชื่อจริง</td>
+          <td scope="col">นามสกุล</td>
+          <td scope="col">สาขา</td>
+          <td scope="col">เวลา</td>
+          <td scope="col">แชร์</td>
+        </tr>
+      </thead>
+      <tbody :class="{ cheer: isFound }">
+        <tr :tabindex="isFound ? null : 1" onclick="this.focus()"
+          class="tr-content" v-for="candidate in list"
+        >
+          <td>{{ candidate.interviewRef }}</td>
+          <td>{{ candidate.firstName }}</td>
+          <td>{{ candidate.lastName }}</td>
+          <td>
+            {{ candidate.major.substr(0, 1).toUpperCase() + candidate.major.substr(1) }}
+          </td>
+          <td>บ่าย</td>
+          <td style="padding-top: 6px">
+            <social-sharing inline-template
+              :url="`https://kykungz.github.io/ywc15-announcement/#/?id=${candidate.interviewRef}`"
+              hashtags="ywc15,YoungWebmasterCamp15"
+              class="d-inline"
+            >
+              <div class="social-icon">
+                <network network="facebook">
+                  <icon style="cursor: pointer" name="facebook-official"></icon>
+                </network>
+                <network network="twitter">
+                  <icon style="cursor: pointer" name="twitter"></icon>
+                </network>
+              </div>
+            </social-sharing>
+            <span @click="share(candidate.interviewRef)" class="d-inline share">
+              <icon style="cursor: pointer" name="share-alt"></icon>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 </template>
 
 <script>
