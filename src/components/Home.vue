@@ -13,9 +13,18 @@
       </span>
     </div>
   </div>
-  <div id="first" ref="first" style="padding-top: 50px" class="container">
-    <h3 class="light text-center">การสัมภาษณ์จะจัดขึ้นในวันที่ <u>26 พฤศจิกายน 2560</u> ณ <i>อาคาร ซี.พี.ทาวเวอร์ 1</i> (สีลม)</h3>
-    <div style="margin-top: 30px" class="row align-items-center">
+  <div id="first" ref="first" style="padding-top: 60px" class="container">
+    <h3 class="light text-center">การสัมภาษณ์จะจัดขึ้นในวันที่
+      <datepicker
+        language="th"
+        :disabled="disabled"
+        :value="new Date(2017, 10, 26)"
+        wrapper-class="d-inline-block"
+        format="dd MMMM yyyy"
+        input-class="datepicker-input"
+      ></datepicker>
+      ณ <i>อาคาร ซี.พี.ทาวเวอร์ 1</i> (สีลม)</h3>
+    <div style="margin-top: 60px" class="row align-items-center">
       <div class="col-lg-7">
         <h3 class="text-center">การเดินทางมาสัมภาษณ์</h3>
         <ol style="font-size:1.2em;" class="medium">
@@ -73,15 +82,17 @@
 
 <script>
 import axios from 'axios'
+import Datepicker from 'vuejs-datepicker'
 import { API_URL } from '@/libraries/constants'
 import List from '@/components/List'
 
 export default {
   name: 'Home',
-  components: { List },
+  components: { List, Datepicker },
   data () {
     return {
       loading: true,
+      disabled: { days: [0, 1, 2, 3, 4, 5, 6] },
       result: [],
       search: this.$route.query.id || '',
       exclude: this.decode(this.$route.query.result) || '',

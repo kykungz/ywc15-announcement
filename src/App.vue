@@ -21,6 +21,24 @@ export default {
   font-family: 'Kanit', sans-serif;
 }
 
+.datepicker-input {
+  color: cornflowerblue;
+  cursor: pointer;
+  background: none;
+  font-weight: 300;
+  border: none;
+  padding: 0;
+  border-bottom-width: 4px;
+  border-bottom-style: dotted;
+  border-bottom-color: black;
+  width: 8.6em;
+  transition: all 300ms;
+}
+
+.datepicker-input:hover {
+  filter: brightness(120%);
+}
+
 .light {
   font-weight: 200;
 }

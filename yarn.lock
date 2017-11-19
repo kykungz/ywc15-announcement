@@ -5609,6 +5609,10 @@ vue@^2.5.2:
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.4.tgz#4405e30b856875553e8fadb0ebf50f51ffc443f5"
 
+vuejs-datepicker@^0.9.20:
+  version "0.9.20"
+  resolved "https://registry.yarnpkg.com/vuejs-datepicker/-/vuejs-datepicker-0.9.20.tgz#88ae3db157fea7509541b10e26fdb66f9118e79c"
+
 watchpack@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.4.0.tgz#4a1472bcbb952bd0a9bb4036801f954dfb39faac"
