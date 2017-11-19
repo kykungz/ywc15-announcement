@@ -36,7 +36,7 @@ export default {
 }
 
 .datepicker-input:hover {
-  filter: brightness(120%);
+  filter: brightness(130%);
 }
 
 .light {
