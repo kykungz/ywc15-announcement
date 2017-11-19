@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import { BASE_URL } from '@/libraries/constants'
 export default {
   name: 'List',
   props: ['major', 'list', 'img'],
@@ -81,9 +82,14 @@ export default {
       shareURL: ''
     }
   },
+  watch: {
+    '$route.query' (query) {
+      this.$refs.shareModel.hide()
+    }
+  },
   methods: {
     share (id) {
-      this.shareURL = `https://kykungz.github.io/ywc15-announcement/#/?id=${id}`
+      this.shareURL = BASE_URL + `?id=${id}`
       this.$refs.shareModel.show()
     },
     copy () {

@@ -4,14 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+import SocialSharing from 'vue-social-sharing'
+import BootstrapVue from 'bootstrap-vue'
+import Icon from 'vue-awesome/components/Icon'
+import { Tabs, Tab } from 'vue-tabs-component'
+
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-awesome/icons'
-import SocialSharing from 'vue-social-sharing'
-
-import Icon from 'vue-awesome/components/Icon'
-import BootstrapVue from 'bootstrap-vue'
-import { Tabs, Tab } from 'vue-tabs-component'
 
 Vue.use(SocialSharing)
 Vue.use(BootstrapVue)

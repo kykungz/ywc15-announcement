@@ -31,51 +31,68 @@
 </template>
 
 <script>
-// import axios from 'axios'
-import result from '@/libraries/candidates'
+import axios from 'axios'
+import { API_URL } from '@/libraries/constants'
 import List from '@/components/List'
+
 export default {
   name: 'Home',
   components: { List },
   data () {
     return {
+      result: [],
       search: this.$route.query.id || '',
-      candidates: {
-        content: [],
-        design: [],
-        marketing: [],
-        programming: []
-      }
+      exclude: this.decode(this.$route.query.result) || ''
     }
   },
   async mounted () {
-    // const result = await axios.get('https://ywc15.ywc.in.th/static/announcement.json')
-    // console.log(result)
-    const filterMajor = (major) => result.filter(candidate => candidate.major === major)
-        .sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
-
-    this.candidates = {
-      content: filterMajor('content'),
-      design: filterMajor('design'),
-      marketing: filterMajor('marketing'),
-      programming: filterMajor('programming')
+    const result = (await axios.get(API_URL)).data
+    this.result = result
+  },
+  computed: {
+    candidates () {
+      return {
+        content: this.filterMajor('content'),
+        design: this.filterMajor('design'),
+        marketing: this.filterMajor('marketing'),
+        programming: this.filterMajor('programming')
+      }
+    },
+    filtered () {
+      if (this.search) {
+        return this.result
+          .filter(candidate =>
+            Object.keys(candidate).some(key => candidate[key]
+                .toLowerCase()
+                .includes(this.search.toLowerCase())) &&
+            candidate.interviewRef !== this.exclude
+          )
+      }
+      return []
     }
   },
   methods: {
     reset () {
       this.search = ''
+    },
+    filterMajor (major) {
+      return this.result.filter(candidate =>
+        candidate.major === major && candidate.interviewRef !== this.exclude
+      ).sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
+    },
+    encode (id) {
+      return id.split('').map(letter => letter.charCodeAt(0) - 20).join('')
+    },
+    decode (id) {
+      return id
+        ? id.match(/.{1,2}/g).map(letter => String.fromCharCode(parseInt(letter) + 20)).join('')
+        : undefined
     }
   },
-  computed: {
-    filtered () {
-      if (this.search) {
-        return result.filter(candidate =>
-          Object.keys(candidate).some(key => candidate[key]
-              .toLowerCase()
-              .includes(this.search.toLowerCase()))
-        )
-      }
-      return []
+  watch: {
+    '$route.query' (query) {
+      this.search = query.id || ''
+      this.exclude = this.decode(query.result) || ''
     }
   }
 }
