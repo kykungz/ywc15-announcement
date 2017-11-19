@@ -1,10 +1,19 @@
 <template>
 <div class="home">
-  <div class="text-center container">
-    <h1 class="display-4 light">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h1>
-    <h2>โครงการ Young Webmaster Camp 15<sup>th</sup></h2>
+  <div class="full-height">
+    <div class="text-center">
+      <img style="max-height: 90px; margin-top: 20px;" class="img-fluid logo" src="static/images/logo.png" alt="">
+    </div>
+    <div style="padding-top: 40px" class="center-block text-center container">
+      <h1 class="display-5 light">สิ้นสุดการรอคอย !!</h1>
+      <h1 style="padding-top: 40px" class="display-4 light">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h1>
+      <h2>โครงการ Young Webmaster Camp 15<sup>th</sup></h2>
+      <span @click="jumpDown">
+        <icon class="bounce" name="angle-down" style="margin-top: 60px" scale="5.4"></icon>
+      </span>
+    </div>
   </div>
-  <div style="margin-top: 50px" class="container">
+  <div id="first" ref="first" style="padding-top: 50px" class="container">
     <h3 class="light text-center">การสัมภาษณ์จะจัดขึ้นในวันที่ <u>26 พฤศจิกายน 2560</u> ณ <i>อาคาร ซี.พี.ทาวเวอร์ 1</i> (สีลม)</h3>
     <div style="margin-top: 30px" class="row align-items-center">
       <div class="col-lg-7">
@@ -107,6 +116,9 @@ export default {
     }
   },
   methods: {
+    jumpDown () {
+      this.$SmoothScroll(this.$refs.first, 500)
+    },
     reset () {
       this.search = ''
     },
@@ -134,8 +146,11 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  margin-top: 40px;
+.full-height {
+  min-height: 100vh;
+  background: url("../../static/images/bg-front.png") repeat, url("../../static/images/bg.png") repeat;
+  background-size: contain;
+  color: white;
 }
 
 .gmap {
@@ -171,5 +186,20 @@ export default {
 .input-group-addon.rounded {
   border-radius: 20px 0 0 20px !important;
   padding-left: 16px !important;
+}
+
+.bounce {
+  cursor: pointer;
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.bounce:hover {
+  transform: scale(1.1);
+}
+@keyframes bounce {
+  0% { transform: translateY(15px); }
+  100% { transform: translateY(0); }
 }
 </style>

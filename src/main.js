@@ -8,6 +8,7 @@ import SocialSharing from 'vue-social-sharing'
 import BootstrapVue from 'bootstrap-vue'
 import Icon from 'vue-awesome/components/Icon'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import vueSmoothScroll from 'vue-smoothscroll'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -21,6 +22,7 @@ Vue.use(VueGoogleMaps, {
 })
 Vue.use(SocialSharing)
 Vue.use(BootstrapVue)
+Vue.use(vueSmoothScroll)
 
 Vue.component('icon', Icon)
 
