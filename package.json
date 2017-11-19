@@ -21,7 +21,8 @@
     "vue-backtotop": "^1.2.6",
     "vue-router": "^3.0.1",
     "vue-social-sharing": "^2.2.10",
-    "vue-spinner": "^1.0.3"
+    "vue-spinner": "^1.0.3",
+    "vue2-google-maps": "^0.8.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

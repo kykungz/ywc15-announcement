@@ -26,6 +26,14 @@ export default {
   font-family: 'Kanit', sans-serif;
 }
 
+.light {
+  font-weight: 200;
+}
+
+.medium {
+  font-weight: 300;
+}
+
 .floating-button {
   background-color: #ffc700 !important;
   border-radius: 200px !important;

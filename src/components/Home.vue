@@ -1,8 +1,40 @@
 <template>
 <div class="home">
   <div class="text-center container">
-    <h1 class="display-4">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h1>
+    <h1 class="display-4 light">ประกาศผู้มีสิทธิ์เข้าสัมภาษณ์</h1>
     <h2>โครงการ Young Webmaster Camp 15<sup>th</sup></h2>
+  </div>
+  <div style="margin-top: 50px" class="container">
+    <h3 class="light text-center">การสัมภาษณ์จะจัดขึ้นในวันที่ <u>26 พฤศจิกายน 2560</u> ณ <i>อาคาร ซี.พี.ทาวเวอร์ 1</i> (สีลม)</h3>
+    <div style="margin-top: 30px" class="row align-items-center">
+      <div class="col-lg-7">
+        <h3 class="text-center">การเดินทางมาสัมภาษณ์</h3>
+        <ol style="font-size:1.2em;" class="medium">
+          <li>ด้วยรถไฟฟ้า BTS สามารถลงสถานีศาลาแดง ณ ทางออกที่ 2</li>
+          <li>ด้วยรถไฟฟ้า MRT สามารถลงสถานีสีลม ณ ทางออกที่ 2 โดยเดินเรียบทางเท้าไปตามถนนสีลม</li>
+          <li>ด้วยรถประจำทาง สามารถขึ้นใช้บริการสาย 15, 77, 155, 504, 177, 76</li>
+        </ol>
+      </div>
+      <div class="col-lg-5">
+        <gmap-map
+          :center="center"
+          :zoom="17"
+          class="gmap"
+        >
+          <gmap-marker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            :clickable="true"
+            :draggable="true"
+            @click="center=m.position"
+          ></gmap-marker>
+        </gmap-map>
+        <div class="text-center">
+          <i><small class="light">อาคาร ซี.พี.ทาวเวอร์ 1 (สีลม)</small></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="search-bar sticky-top">
@@ -43,7 +75,9 @@ export default {
       loading: true,
       result: [],
       search: this.$route.query.id || '',
-      exclude: this.decode(this.$route.query.result) || ''
+      exclude: this.decode(this.$route.query.result) || '',
+      center: { lat: 13.7275053, lng: 100.5326877 },
+      markers: [{ position: { lat: 13.7275053, lng: 100.5326877 } }]
     }
   },
   async mounted () {
@@ -104,13 +138,9 @@ export default {
   margin-top: 40px;
 }
 
-.dark-bg {
-  background: rgb(57, 57, 57);
-  border-radius: 8px;
-}
-
-.white {
-  color: #eeeeee;
+.gmap {
+  width: 100%;
+  height: 300px;
 }
 
 .search-bar {

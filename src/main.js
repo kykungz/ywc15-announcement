@@ -7,11 +7,18 @@ import router from './router'
 import SocialSharing from 'vue-social-sharing'
 import BootstrapVue from 'bootstrap-vue'
 import Icon from 'vue-awesome/components/Icon'
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-awesome/icons'
 
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBvWE_sIwKbWkiuJQOf8gSk9qzpO96fhfY',
+    libraries: 'places'
+  }
+})
 Vue.use(SocialSharing)
 Vue.use(BootstrapVue)
 
