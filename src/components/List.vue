@@ -49,7 +49,7 @@
             <td>บ่าย</td>
             <td style="padding-top: 6px">
               <social-sharing inline-template
-                :url="'https://ywc15-announcement/?id='+candidate.interviewRef"
+                :url="`https://kykungz.github.io/ywc15-announcement/?id=${candidate.interviewRef}`"
                 class="d-inline"
               >
                 <div class="social-icon">
