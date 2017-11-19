@@ -14,7 +14,6 @@
         </div>
     </b-modal>
 
-
     <div class="major">
       <div class="container">
         <h2>
@@ -34,16 +33,20 @@
       <table class="table table-sm">
         <thead class="sticky">
           <tr>
-            <th scope="col">รหัส</th>
-            <th scope="col">ชื่อจริง</th>
-            <th scope="col">นามสกุล</th>
-            <th scope="col">สาขา</th>
-            <th scope="col">เวลา</th>
-            <th scope="col">แชร์</th>
+            <td scope="col">รหัส</td>
+            <td scope="col">ชื่อจริง</td>
+            <td scope="col">นามสกุล</td>
+            <td scope="col">สาขา</td>
+            <td scope="col">เวลา</td>
+            <td scope="col">แชร์</td>
           </tr>
         </thead>
         <tbody :class="{ cheer: isFound }">
-          <tr tabindex="1" onclick="this.focus()" class="tr-content" v-for="candidate in list">
+          <tr :tabindex="isFound ? null : 1"
+            onclick="this.focus()"
+            class="tr-content"
+            v-for="candidate in list"
+          >
             <td>{{ candidate.interviewRef }}</td>
             <td>{{ candidate.firstName }}</td>
             <td>{{ candidate.lastName }}</td>
@@ -54,6 +57,7 @@
             <td style="padding-top: 6px">
               <social-sharing inline-template
                 :url="`https://kykungz.github.io/ywc15-announcement/#/?id=${candidate.interviewRef}`"
+                hashtags="ywc15,YoungWebmasterCamp15"
                 class="d-inline"
               >
                 <div class="social-icon">
@@ -179,10 +183,6 @@ thead {
 
 .cheer:hover {
   animation: none;
-}
-
-.cheer .tr-content:focus {
-  transform: none;
 }
 
 .cheer .tr-content:hover {

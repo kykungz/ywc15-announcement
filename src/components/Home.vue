@@ -114,6 +114,10 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  margin-bottom: 180px;
+}
+
 .full-height {
   min-height: 100vh;
   background: url("../../static/images/bg-front.png") repeat, url("../../static/images/bg.png") repeat;
