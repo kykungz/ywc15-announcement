@@ -39,7 +39,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="tr-content" v-for="candidate in list">
+          <tr tabindex="1"class="tr-content" v-for="candidate in list">
             <td>{{ candidate.interviewRef }}</td>
             <td>{{ candidate.firstName }}</td>
             <td>{{ candidate.lastName }}</td>
@@ -49,7 +49,7 @@
             <td>บ่าย</td>
             <td style="padding-top: 6px">
               <social-sharing inline-template
-                :url="`https://kykungz.github.io/ywc15-announcement/?id=${candidate.interviewRef}`"
+                :url="`https://kykungz.github.io/ywc15-announcement/#/?id=${candidate.interviewRef}`"
                 class="d-inline"
               >
                 <div class="social-icon">
@@ -83,11 +83,10 @@ export default {
   },
   methods: {
     share (id) {
-      this.shareURL = `https://kykungz.github.io/ywc15-announcement/?id=${id}`
+      this.shareURL = `https://kykungz.github.io/ywc15-announcement/#/?id=${id}`
       this.$refs.shareModel.show()
     },
     copy () {
-      console.log(this.$refs.shareURL)
       this.$refs.shareURL.select()
       document.execCommand('Copy')
     }
@@ -133,12 +132,19 @@ thead {
   transform: scale(1.1);
 }
 
+.tr-content:focus {
+  background: orange;
+  transform: scale(1.1);
+  outline: none;
+}
+
 .tr-content:hover .social-icon, .tr-content:hover .share{
   color: #333333;
 }
 
 .social-icon, .share {
   color: #9d9d9d;
+  transition: color 400ms;
 }
 
 @media (max-width: 400px) {
