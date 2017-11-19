@@ -1,4 +1,4 @@
-export const BASE_URL = process.NODE_ENV === 'production'
+export const BASE_URL = process.env.NODE_ENV === 'production'
   ? 'https://kykungz.github.io/ywc15-announcement/#/'
   : 'localhost:8080/#/'
 
