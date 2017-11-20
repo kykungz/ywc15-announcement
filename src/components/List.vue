@@ -17,14 +17,14 @@
   <div class="major">
     <div class="container">
       <h2>
-        <img v-if="img" :src="img" class="img-fluid rounded-circle" width="80px" alt="">
+        <img v-if="img" :src="img" class="img-fluid rounded-circle" width="60px" alt="">
         {{ major }}
       </h2>
       <hr>
     </div>
   </div>
 
-  <pulse-loader class="text-center" :loading="loading" color="orange"></pulse-loader>
+  <pulse-loader class="text-center" :loading="loading" color="#212730"></pulse-loader>
 
   <h3 v-show="list.length <= 0 && !loading" style="margin-top: 40px" class="text-center text-muted">
     ขออภัย ไม่พบข้อมูลผู้สมัคร พบกันใหม่ปีหน้านะครับ !
@@ -121,7 +121,7 @@ export default {
   background: linear-gradient(to bottom, white, white, rgba(255, 255, 255, 0.9));
   word-wrap: break-word;
   padding-top: 10px;
-  z-index: 3;
+  z-index: 2;
 }
 
 hr {
@@ -129,7 +129,7 @@ hr {
 }
 
 img {
-  background: rgb(33, 39, 48);
+  background: #212730;
 }
 
 th {

@@ -44,17 +44,27 @@
     <div class="container major">
       <div class="row text-center">
         <div class="col-6 col-md-3" v-for="major in ['content', 'design', 'marketing', 'programming']">
-          <img :src="`static/images/${major}.png`" width="160px" class="img-fluid rounded-circle dark-bg">
+          <img
+            @click="scrollTo(`${major}Major`)"
+            :src="`static/images/${major}.png`"
+            width="160px"
+            class="img-fluid rounded-circle dark-bg"
+          >
           <br>
           <h4>{{ major.substr(0, 1).toUpperCase() + major.substr(1) }}</h4>
         </div>
       </div>
     </div>
 
-    <list :loading="loading" major="Web Content" img="static/images/content.png" :list="candidates.content"></list>
-    <list :loading="loading" major="Web Design" img="static/images/design.png" :list="candidates.design"></list>
-    <list :loading="loading" major="Web Marketing" img="static/images/marketing.png" :list="candidates.marketing"></list>
-    <list :loading="loading" major="Web Programming" img="static/images/programming.png" :list="candidates.programming"></list>
+    <list v-for="(major, index) in ['content', 'design', 'marketing', 'programming']"
+      :key="index"
+      :ref="`${major}Major`"
+      :loading="loading"
+      :list="candidates[major]"
+      :major="`Web ${major.substr(0, 1).toUpperCase() + major.substr(1)}`"
+      :img="`static/images/${major}.png`"
+    ></list>
+
   </div>
 
   <prank></prank>
@@ -116,6 +126,9 @@ export default {
     jumpDown () {
       this.$SmoothScroll(this.$refs.info, 500)
     },
+    scrollTo (target) {
+      this.$SmoothScroll(this.$refs[target][0].$el.offsetTop - 80, 500)
+    },
     reset () {
       this.search = ''
     },
@@ -146,6 +159,17 @@ export default {
 
 .major {
   margin: 30px auto;
+}
+
+.major img {
+  cursor: pointer;
+  box-shadow: 2px 1px 5px rgba(33, 39, 48, 0.6);
+  margin-bottom: 6px;
+  transition: all 300ms;
+}
+
+.major img:hover {
+  transform: scale(0.9);
 }
 
 .dark-bg {
@@ -189,9 +213,6 @@ export default {
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-}
-.bounce:hover {
-  transform: scale(1.1);
 }
 
 @keyframes bounce {
