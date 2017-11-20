@@ -1,7 +1,7 @@
 <template>
 <div class="prank">
   <div class="container text-right">
-    <b-btn @click="reset" size="lg" variant="danger" v-b-modal.prankModal>แกล้งเพื่อน</b-btn>
+    <b-btn @click="reset" class="my-btn" size="lg" variant="danger" v-b-modal.prankModal>แกล้งเพื่อน</b-btn>
 
     <b-modal class="text-center" ref="prankModal" id="prankModal"
       hide-footer title="แกล้งเพื่อน"

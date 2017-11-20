@@ -32,7 +32,7 @@
       <span @click="reset()" class="remove-search">
         <icon v-show="search" name="times-circle" scale="1.4"></icon>
       </span>
-      <button ref="speakButton" @click="speechClicked" type="button" class="btn btn-primary speak-icon">
+      <button ref="speakButton" @click="speechClicked" type="button" class="btn btn-primary my-btn speak-icon">
         <scale-loader v-if="listening" width="2px" height="16px" color="white"></scale-loader>
         <icon v-else name="microphone" scale="1.4"></icon>
       </button>
@@ -242,20 +242,12 @@ export default {
 }
 
 .speak-icon {
-  padding: 0;
-  cursor: pointer;
-  margin-left: 6px;
-  text-align: center;
   line-height: 50%;
+  padding: 0;
+  margin-left: 6px;
   border-radius: 14px;
   width: 46px;
   height: 46px;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
-  transition: all 300ms;
-}
-
-.speak-icon:hover {
-  transform: translateY(2px);
 }
 
 .bounce {

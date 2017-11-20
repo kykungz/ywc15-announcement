@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <transition name="fade">
-      <button @click="backToTop" v-if="showing" class="btn btn-warning floating-button">
+      <button @click="backToTop" v-if="showing" class="btn btn-warning my-btn floating-button">
         <icon class="text-center" name="angle-up" scale="2.4"></icon>
       </button>
     </transition>
@@ -53,10 +53,27 @@ export default {
   font-family: 'Kanit', sans-serif;
 }
 
-.floating {
+.my-btn {
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  transition: all 300ms;
+}
+
+.my-btn:hover {
+  transform: translateY(2px);
+}
+
+.floating-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  color: white !important;
+  z-index: 4;
+  padding-top: 0.2em;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -90,25 +107,6 @@ export default {
 
 .medium {
   font-weight: 300;
-}
-
-.floating-button {
-  position: fixed;
-  cursor: pointer;
-  bottom: 30px;
-  right: 30px;
-  border-radius: 25px;
-  width: 50px;
-  height: 50px;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
-  color: white !important;
-  transition: all 400ms;
-  z-index: 4;
-  padding-top: 0.2em;
-}
-
-.floating-button:hover {
-  transform: translateY(4px);
 }
 
 .logo {
