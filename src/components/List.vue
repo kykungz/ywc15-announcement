@@ -121,7 +121,7 @@ export default {
   background: linear-gradient(to bottom, white, white, rgba(255, 255, 255, 0.9));
   word-wrap: break-word;
   padding-top: 10px;
-  z-index: 30;
+  z-index: 3;
 }
 
 hr {

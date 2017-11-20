@@ -5515,12 +5515,6 @@ vue-awesome@^2.3.4:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-awesome/-/vue-awesome-2.3.4.tgz#a8b06a21dd95a5787e108561be89e216fd9a78e6"
 
-vue-backtotop@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/vue-backtotop/-/vue-backtotop-1.2.6.tgz#d1db7ed09b3fd30f8316d7b5ac6d35fc5e028c60"
-  dependencies:
-    vue "^2.3.3"
-
 vue-functional-data-merge@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-1.0.6.tgz#cde4f0cf3f251f7f0196341156d2c936cca63d40"
@@ -5600,10 +5594,6 @@ vue@^1.0.21:
   resolved "https://registry.yarnpkg.com/vue/-/vue-1.0.28.tgz#ed2ff07b200bde15c87a90ef8727ceea7d38567d"
   dependencies:
     envify "^3.4.0"
-
-vue@^2.3.3:
-  version "2.5.6"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.6.tgz#73654fefa4b37f25dfc657b8b834b44c90822cd7"
 
 vue@^2.5.2:
   version "2.5.4"

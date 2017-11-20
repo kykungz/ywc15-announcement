@@ -1,16 +1,35 @@
 <template>
   <div class="app">
-    <back-to-top class="floating-button" text="⌃"></back-to-top>
+    <transition name="fade">
+      <div @click="backToTop" v-if="showing"
+        class="d-flex align-items-center justify-content-center floating-button"
+      >
+        <icon class="text-center" name="angle-up" scale="2.4"></icon>
+      </div>
+    </transition>
     <router-view/>
   </div>
 </template>
 
 <script>
-import BackToTop from 'vue-backtotop'
-
 export default {
   name: 'app',
-  components: { BackToTop }
+  data () {
+    return {
+      showing: false
+    }
+  },
+  methods: {
+    handleScroll () {
+      this.showing = window.scrollY >= 500
+    },
+    backToTop () {
+      this.$SmoothScroll(document.body, 500)
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+  }
 }
 </script>
 
@@ -19,6 +38,19 @@ export default {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   /*color: #dddddd;*/
   font-family: 'Kanit', sans-serif;
+}
+
+.floating {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
 }
 
 .datepicker-input {
@@ -48,15 +80,19 @@ export default {
 }
 
 .floating-button {
-  background-color: #ffc700 !important;
-  border-radius: 200px !important;
-  width: 50px !important;
-  height: 50px !important;
-  font-size: 36px;
-  padding-top: 17px;
+  position: fixed;
+  cursor: pointer;
+  bottom: 30px;
+  right: 30px;
+  background-color: #ffc700;
+  border-radius: 25px;
+  width: 50px;
+  height: 50px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: white;
   transition: all 400ms;
-  bottom: 30px !important;
+  z-index: 10;
 }
 
 .floating-button:hover {
