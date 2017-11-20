@@ -23,7 +23,7 @@
   </div>
 
   <!-- Search Bar -->
-  <div class="search-bar sticky-top">
+  <div ref="searchBar" class="search-bar sticky-top">
     <div class="container input-group input-group-lg position-relative">
       <span class="input-group-addon rounded">
         <icon name="search"></icon>
@@ -134,10 +134,14 @@ export default {
       ).sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
     }
   },
+  mounted () {
+    this.$SmoothScroll(this.$refs.searchBar, 200)
+  },
   watch: {
     '$route.query' (query) {
       this.search = query.id || ''
       this.exclude = decrypt(query.result) || ''
+      this.$SmoothScroll(this.$refs.searchBar, 200)
     }
   }
 }

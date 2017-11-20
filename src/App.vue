@@ -24,6 +24,10 @@ export default {
     }
   },
   async mounted () {
+    // prevent autoscroll to previous position when refesh
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'
+    }
     window.addEventListener('scroll', this.handleScroll)
     this.setResult((await axios.get(API_URL)).data)
     this.setLoading(false)
