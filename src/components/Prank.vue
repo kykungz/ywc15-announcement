@@ -11,6 +11,8 @@
       <b-form-input v-model="exclude" style="max-width: 8em" maxlength="4" class="mx-auto text-center"
         size="lg" type="text" placeholder="รหัส 4 หลัก"
       ></b-form-input>
+      <small v-if="found.length === 1" class="text-success">{{ `${found[0].firstName} ${found[0].lastName}` }}</small>
+      <small v-else class="text-danger">ไม่พบข้อมูล</small>
       <b-form-text>รหัสของคนที่ต้องการจะซ่อน เช่น: PG03, MK32</b-form-text>
 
       <b-input-group style="margin-top: 10px">
@@ -29,24 +31,35 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { encrypt } from '@/libraries/functions'
 import { BASE_URL } from '@/libraries/constants'
 
 export default {
-  props: ['found'],
+  props: ['candidate'],
   data () {
     return {
       exclude: ''
     }
   },
   computed: {
+    ...mapGetters([
+      'result'
+    ]),
+    found () {
+      return this.result.filter(candidate =>
+        candidate.interviewRef.toUpperCase() === this.exclude.trim().toUpperCase()
+      )
+    },
     prankURL () {
-      return BASE_URL + '?result=' + encrypt(this.exclude)
+      return this.found.length === 1
+        ? BASE_URL + '?result=' + encrypt(this.exclude)
+        : ''
     }
   },
   methods: {
     reset () {
-      this.exclude = this.found ? this.found.interviewRef : ''
+      this.exclude = this.candidate ? this.candidate.interviewRef : ''
     },
     copy () {
       this.$refs.prankURL.$el.select()

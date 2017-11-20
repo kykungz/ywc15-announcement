@@ -66,7 +66,7 @@
 
   </div>
 
-  <prank :found="filtered.length === 1 ? filtered[0] : null"></prank>
+  <prank :candidate="filtered.length === 1 ? filtered[0] : null"></prank>
 
 </div>
 </template>
@@ -107,13 +107,11 @@ export default {
     },
     filtered () {
       if (this.search) {
-        return this.result
-          .filter(candidate =>
-            Object.keys(candidate).some(key => candidate[key]
-                .toLowerCase()
-                .includes(this.search.trim().toLowerCase())) &&
-            candidate.interviewRef !== this.exclude
-          )
+        return this.result.filter(candidate =>
+          Object.keys(candidate).some(key =>
+            candidate[key].toLowerCase().includes(this.search.trim().toLowerCase())
+          ) && candidate.interviewRef !== this.exclude
+        )
       }
       return []
     }
@@ -135,7 +133,9 @@ export default {
     }
   },
   mounted () {
-    this.$SmoothScroll(this.$refs.searchBar, 200)
+    if (this.$route.query.id) {
+      this.$SmoothScroll(this.$refs.searchBar, 200)
+    }
   },
   watch: {
     '$route.query' (query) {
