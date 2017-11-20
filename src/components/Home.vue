@@ -17,9 +17,9 @@
     </div>
   </div>
 
-  <!-- Place -->
-  <div ref="first">
-    <place></place>
+  <!-- Information -->
+  <div ref="info">
+    <information></information>
   </div>
 
   <!-- Search Bar -->
@@ -56,12 +56,12 @@ import axios from 'axios'
 import { API_URL } from '@/libraries/constants'
 import { decrypt } from '@/libraries/functions'
 import List from '@/components/List'
-import Place from '@/components/Place'
+import Information from '@/components/Information'
 import Prank from '@/components/Prank'
 
 export default {
   name: 'Home',
-  components: { List, Place, Prank },
+  components: { List, Information, Prank },
   data () {
     return {
       // Use inline-style object to avoid webpack resolve incorrect URL
@@ -103,7 +103,7 @@ export default {
   },
   methods: {
     jumpDown () {
-      this.$SmoothScroll(this.$refs.first, 500)
+      this.$SmoothScroll(this.$refs.info, 500)
     },
     reset () {
       this.search = ''
