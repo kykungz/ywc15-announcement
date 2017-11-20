@@ -63,9 +63,9 @@
       :major="`Web ${major.substr(0, 1).toUpperCase() + major.substr(1)}`"
       :img="`static/images/${major}.png`"
     ></list>
-
   </div>
 
+  <!-- Prank -->
   <prank :candidate="filtered.length === 1 ? filtered[0] : null"></prank>
 
 </div>
@@ -90,6 +90,11 @@ export default {
       },
       search: this.$route.query.id || '',
       exclude: decrypt(this.$route.query.result) || ''
+    }
+  },
+  mounted () {
+    if (this.$route.query.id) {
+      this.$SmoothScroll(this.$refs.searchBar, 200)
     }
   },
   computed: {
@@ -130,11 +135,6 @@ export default {
       return this.result.filter(candidate =>
         candidate.major === major && candidate.interviewRef !== this.exclude
       ).sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
-    }
-  },
-  mounted () {
-    if (this.$route.query.id) {
-      this.$SmoothScroll(this.$refs.searchBar, 200)
     }
   },
   watch: {
