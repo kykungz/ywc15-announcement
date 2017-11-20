@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     reset () {
-      this.exclide = this.found ? this.found.interviewRef : ''
+      this.exclude = this.found ? this.found.interviewRef : ''
     },
     copy () {
       this.$refs.prankURL.$el.select()
