@@ -5603,6 +5603,10 @@ vuejs-datepicker@^0.9.20:
   version "0.9.20"
   resolved "https://registry.yarnpkg.com/vuejs-datepicker/-/vuejs-datepicker-0.9.20.tgz#88ae3db157fea7509541b10e26fdb66f9118e79c"
 
+vuex@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"
+
 watchpack@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.4.0.tgz#4a1472bcbb952bd0a9bb4036801f954dfb39faac"

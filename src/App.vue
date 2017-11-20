@@ -12,6 +12,10 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapActions } from 'vuex'
+import { API_URL } from '@/libraries/constants'
+
 export default {
   name: 'app',
   data () {
@@ -19,16 +23,19 @@ export default {
       showing: false
     }
   },
+  async mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+    this.setResult((await axios.get(API_URL)).data)
+    this.setLoading(false)
+  },
   methods: {
+    ...mapActions(['setResult', 'setLoading']),
     handleScroll () {
       this.showing = window.scrollY >= 500
     },
     backToTop () {
       this.$SmoothScroll(document.body, 500)
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handleScroll)
   }
 }
 </script>

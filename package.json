@@ -23,7 +23,8 @@
     "vue-social-sharing": "^2.2.10",
     "vue-spinner": "^1.0.3",
     "vue2-google-maps": "^0.8.4",
-    "vuejs-datepicker": "^0.9.20"
+    "vuejs-datepicker": "^0.9.20",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

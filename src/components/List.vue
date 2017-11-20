@@ -79,12 +79,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { BASE_URL } from '@/libraries/constants'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
   name: 'List',
-  props: ['major', 'list', 'img', 'loading'],
+  props: ['major', 'list', 'img'],
   components: { PulseLoader },
   data () {
     return {
@@ -92,6 +93,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'loading'
+    ]),
     isFound () {
       return this.list.length === 1
     }

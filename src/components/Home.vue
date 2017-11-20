@@ -59,7 +59,6 @@
     <list v-for="(major, index) in ['content', 'design', 'marketing', 'programming']"
       :key="index"
       :ref="`${major}Major`"
-      :loading="loading"
       :list="candidates[major]"
       :major="`Web ${major.substr(0, 1).toUpperCase() + major.substr(1)}`"
       :img="`static/images/${major}.png`"
@@ -73,8 +72,7 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { API_URL } from '@/libraries/constants'
+import { mapGetters } from 'vuex'
 import { decrypt } from '@/libraries/functions'
 import List from '@/components/List'
 import Information from '@/components/Information'
@@ -90,17 +88,15 @@ export default {
         background: `url('static/images/bg-front.png') repeat, url('static/images/bg.png') repeat`,
         backgroundSize: 'contain'
       },
-      loading: true,
-      result: [],
       search: this.$route.query.id || '',
       exclude: decrypt(this.$route.query.result) || ''
     }
   },
-  async mounted () {
-    this.result = (await axios.get(API_URL)).data
-    this.loading = false
-  },
   computed: {
+    ...mapGetters([
+      'result',
+      'loading'
+    ]),
     candidates () {
       return {
         content: this.filterMajor('content'),
