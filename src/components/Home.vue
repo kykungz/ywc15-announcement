@@ -39,7 +39,18 @@
 
   <!-- Candidate List -->
   <list v-show="search" :loading="loading" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
+
   <div v-show="!search">
+    <div class="container major">
+      <div class="row text-center">
+        <div class="col-6 col-md-3" v-for="major in ['content', 'design', 'marketing', 'programming']">
+          <img :src="`static/images/${major}.png`" width="160px" class="img-fluid rounded-circle dark-bg">
+          <br>
+          <h4>{{ major.substr(0, 1).toUpperCase() + major.substr(1) }}</h4>
+        </div>
+      </div>
+    </div>
+
     <list :loading="loading" major="Web Content" img="static/images/content.png" :list="candidates.content"></list>
     <list :loading="loading" major="Web Design" img="static/images/design.png" :list="candidates.design"></list>
     <list :loading="loading" major="Web Marketing" img="static/images/marketing.png" :list="candidates.marketing"></list>
@@ -131,6 +142,14 @@ export default {
 .full-height {
   min-height: 100vh;
   color: white;
+}
+
+.major {
+  margin: 30px auto;
+}
+
+.dark-bg {
+  background: rgb(33, 39, 48);
 }
 
 .search-bar {

@@ -17,7 +17,7 @@
   <div class="major">
     <div class="container">
       <h2>
-        <img v-if="img" :src="img" class="img-fluid" width="100px" alt="">
+        <img v-if="img" :src="img" class="img-fluid rounded-circle" width="80px" alt="">
         {{ major }}
       </h2>
       <hr>
@@ -129,7 +129,7 @@ hr {
 }
 
 img {
-  margin-top: -10px;
+  background: rgb(33, 39, 48);
 }
 
 th {
