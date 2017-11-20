@@ -67,7 +67,7 @@
 
   </div>
 
-  <prank></prank>
+  <prank :found="filtered.length === 1 ? filtered[0] : null"></prank>
 
 </div>
 </template>

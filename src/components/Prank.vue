@@ -33,6 +33,7 @@ import { encrypt } from '@/libraries/functions'
 import { BASE_URL } from '@/libraries/constants'
 
 export default {
+  props: ['found'],
   data () {
     return {
       exclude: ''
@@ -45,7 +46,7 @@ export default {
   },
   methods: {
     reset () {
-      this.exclude = ''
+      this.exclide = this.found ? this.found.interviewRef : ''
     },
     copy () {
       this.$refs.prankURL.$el.select()
