@@ -1,9 +1,7 @@
 <template>
 <div class="home">
   <!-- Welcome -->
-  <div
-    :style="bg"
-    class="full-height">
+  <div :style="bg" class="full-height">
     <div class="text-center">
       <img style="max-height: 90px; margin-top: 20px;" class="img-fluid logo" src="static/images/logo.png" alt="">
     </div>
@@ -22,41 +20,44 @@
 
   <!-- Search Bar -->
   <div ref="searchBar" class="search-bar sticky-top">
-    <div class="container input-group input-group-lg position-relative">
-      <span class="input-group-addon search-icon">
-        <icon name="search"></icon>
-      </span>
-      <input v-model="search" type="text" class="form-control search-input"
-        placeholder="ค้นหาด้วย ชื่อ, รหัส, สาขา" aria-label="ค้นหาด้วย ชื่อ, รหัส, สาขา"
-      >
-      <span @click="reset()" class="remove-search">
-        <icon v-show="search" name="times-circle" scale="1.4"></icon>
-      </span>
-      <button ref="speakButton" @click="speechClicked" type="button" class="btn btn-primary my-btn speak-icon">
-        <scale-loader v-if="listening" width="2px" height="16px" color="white"></scale-loader>
-        <icon v-else name="microphone" scale="1.4"></icon>
-      </button>
-    </div>
+    <b-container>
+      <b-input-group size="lg" class="position-relative">
+        <b-input-group-addon class="search-icon">
+          <icon name="search"></icon>
+        </b-input-group-addon>
+
+        <b-form-input v-model="search" class="search-input" placeholder="ค้นหาด้วย ชื่อ, รหัส, สาขา"></b-form-input>
+        <span @click="reset()" class="remove-search">
+          <icon v-show="search" name="times-circle" scale="1.4"></icon>
+        </span>
+
+        <b-button @click="speechToggle" variant="primary" class="my-btn speak-icon">
+          <scale-loader v-if="listening" width="2px" height="16px" color="white"></scale-loader>
+          <icon v-else name="microphone" scale="1.4"></icon>
+        </b-button>
+      </b-input-group>
+    </b-container>
   </div>
 
   <!-- Candidate List -->
   <list v-show="search" :loading="loading" :major='`ผลการค้นหา "${search}"`' :list="filtered"></list>
 
   <div v-show="!search">
-    <div class="container major">
-      <div class="row text-center">
-        <div class="col-6 col-md-3" v-for="major in ['content', 'design', 'marketing', 'programming']">
-          <img
-            @click="scrollTo(`${major}Major`)"
+    <b-container class="major">
+      <b-row class="text-center">
+        <b-col v-for="(major, index) in ['content', 'design', 'marketing', 'programming']"
+          cols="6" md="3" :key="index"
+        >
+          <img @click="scrollTo(`${major}Major`)"
             :src="`static/images/${major}.png`"
             width="160px"
             class="img-fluid rounded-circle dark-bg"
           >
           <br>
           <h4>{{ major.substr(0, 1).toUpperCase() + major.substr(1) }}</h4>
-        </div>
-      </div>
-    </div>
+        </b-col>
+      </b-row>
+    </b-container>
 
     <list v-for="(major, index) in ['content', 'design', 'marketing', 'programming']"
       :key="index"
@@ -110,14 +111,8 @@ export default {
         const transcript = event.results[current][0].transcript
         this.search = transcript.replace(/\s/g, '')
       }
-
-      recognition.onend = (event) => {
-        this.listening = false
-      }
-
-      recognition.onstart = (event) => {
-        this.listening = true
-      }
+      recognition.onend = (event) => { this.listening = false }
+      recognition.onstart = (event) => { this.listening = true }
 
       this.recognition = recognition
     } catch (e) {
@@ -150,7 +145,7 @@ export default {
     }
   },
   methods: {
-    speechClicked () {
+    speechToggle () {
       if (this.listening) {
         this.recognition.stop()
       } else {
@@ -223,7 +218,7 @@ export default {
   color: darkgray;
   cursor: pointer;
   top: 13px;
-  right: 84px;
+  right: 70px;
   z-index: 3;
   transition: color 200ms;
 }

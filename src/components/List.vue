@@ -15,13 +15,13 @@
   </b-modal>
 
   <div class="major">
-    <div class="container">
+    <b-container>
       <h2>
         <img v-if="img" :src="img" class="img-fluid rounded-circle" width="60px" alt="">
         {{ major }}
       </h2>
       <hr>
-    </div>
+    </b-container>
   </div>
 
   <pulse-loader class="text-center" :loading="loading" color="#212730"></pulse-loader>
@@ -29,7 +29,7 @@
   <h3 v-show="list.length <= 0 && !loading" style="margin-top: 40px" class="text-center text-muted">
     ขออภัย ไม่พบข้อมูลผู้สมัคร พบกันใหม่ปีหน้านะครับ !
   </h3>
-  <div v-show="list.length > 0" class="container mytable">
+  <b-container v-show="list.length > 0" class="mytable">
     <table class="table table-sm">
       <thead class="sticky">
         <tr>
@@ -74,7 +74,7 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </b-container>
 </div>
 </template>
 
