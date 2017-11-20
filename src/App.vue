@@ -1,11 +1,9 @@
 <template>
   <div class="app">
     <transition name="fade">
-      <div @click="backToTop" v-if="showing"
-        class="d-flex align-items-center justify-content-center floating-button"
-      >
+      <button @click="backToTop" v-if="showing" class="btn btn-warning floating-button">
         <icon class="text-center" name="angle-up" scale="2.4"></icon>
-      </div>
+      </button>
     </transition>
     <router-view/>
   </div>
@@ -26,7 +24,11 @@ export default {
   async mounted () {
     // prevent autoscroll to previous position when refesh
     if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual'
+      if (this.$route.query.id) {
+        history.scrollRestoration = 'manual'
+      } else {
+        history.scrollRestoration = 'auto'
+      }
     }
     window.addEventListener('scroll', this.handleScroll)
     this.setResult((await axios.get(API_URL)).data)
@@ -95,19 +97,17 @@ export default {
   cursor: pointer;
   bottom: 30px;
   right: 30px;
-  background-color: #ffc700;
   border-radius: 25px;
   width: 50px;
   height: 50px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  color: white;
+  color: white !important;
   transition: all 400ms;
-  z-index: 10;
+  z-index: 4;
+  padding-top: 0.2em;
 }
 
 .floating-button:hover {
-  filter: brightness(0.95);
   transform: translateY(4px);
 }
 

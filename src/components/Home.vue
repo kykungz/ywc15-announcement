@@ -18,22 +18,24 @@
   </div>
 
   <!-- Information -->
-  <div ref="info">
-    <information></information>
-  </div>
+  <information ref="info"></information>
 
   <!-- Search Bar -->
   <div ref="searchBar" class="search-bar sticky-top">
     <div class="container input-group input-group-lg position-relative">
-      <span class="input-group-addon rounded">
+      <span class="input-group-addon search-icon">
         <icon name="search"></icon>
       </span>
-      <input v-model="search" type="text" class="form-control rounded"
+      <input v-model="search" type="text" class="form-control search-input"
         placeholder="ค้นหาด้วย ชื่อ, รหัส, สาขา" aria-label="ค้นหาด้วย ชื่อ, รหัส, สาขา"
       >
       <span @click="reset()" class="remove-search">
         <icon v-show="search" name="times-circle" scale="1.4"></icon>
       </span>
+      <button ref="speakButton" @click="speechClicked" type="button" class="btn btn-primary speak-icon">
+        <scale-loader v-if="listening" width="2px" height="16px" color="white"></scale-loader>
+        <icon v-else name="microphone" scale="1.4"></icon>
+      </button>
     </div>
   </div>
 
@@ -74,13 +76,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import { decrypt } from '@/libraries/functions'
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
 import List from '@/components/List'
 import Information from '@/components/Information'
 import Prank from '@/components/Prank'
 
 export default {
   name: 'Home',
-  components: { List, Information, Prank },
+  components: { List, Information, Prank, ScaleLoader },
   data () {
     return {
       // Use inline-style object to avoid webpack resolve incorrect URL
@@ -89,12 +92,37 @@ export default {
         backgroundSize: 'contain'
       },
       search: this.$route.query.id || '',
-      exclude: decrypt(this.$route.query.result) || ''
+      exclude: decrypt(this.$route.query.result) || '',
+      recognition: null,
+      listening: false
     }
   },
   mounted () {
     if (this.$route.query.id) {
-      this.$SmoothScroll(this.$refs.searchBar, 200)
+      this.$SmoothScroll(this.$refs.searchBar, 500)
+    }
+    try {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+      const recognition = new SpeechRecognition()
+
+      recognition.onresult = (event) => {
+        const current = event.resultIndex
+        const transcript = event.results[current][0].transcript
+        this.search = transcript.replace(/\s/g, '')
+      }
+
+      recognition.onend = (event) => {
+        this.listening = false
+      }
+
+      recognition.onstart = (event) => {
+        this.listening = true
+      }
+
+      this.recognition = recognition
+    } catch (e) {
+      console.log(e)
+      this.$refs.speakButton.disabled = true
     }
   },
   computed: {
@@ -122,8 +150,15 @@ export default {
     }
   },
   methods: {
+    speechClicked () {
+      if (this.listening) {
+        this.recognition.stop()
+      } else {
+        this.recognition.start()
+      }
+    },
     jumpDown () {
-      this.$SmoothScroll(this.$refs.info, 500)
+      this.$SmoothScroll(this.$refs.info.$el, 500)
     },
     scrollTo (target) {
       this.$SmoothScroll(this.$refs[target][0].$el.offsetTop - 80, 500)
@@ -141,7 +176,7 @@ export default {
     '$route.query' (query) {
       this.search = query.id || ''
       this.exclude = decrypt(query.result) || ''
-      this.$SmoothScroll(this.$refs.searchBar, 200)
+      this.$SmoothScroll(this.$refs.searchBar, 500)
     }
   }
 }
@@ -188,7 +223,7 @@ export default {
   color: darkgray;
   cursor: pointer;
   top: 13px;
-  right: 30px;
+  right: 84px;
   z-index: 3;
   transition: color 200ms;
 }
@@ -197,14 +232,30 @@ export default {
   color: gray;
 }
 
-.form-control.rounded {
+.search-input {
   border-radius: 0 20px 20px 0 !important;
-  padding-right: 42px !important;
+  padding-right: 42px;
 }
 
-.input-group-addon.rounded {
-  border-radius: 20px 0 0 20px !important;
-  padding-left: 16px !important;
+.search-icon {
+  border-radius: 20px 0 0 20px;
+}
+
+.speak-icon {
+  padding: 0;
+  cursor: pointer;
+  margin-left: 6px;
+  text-align: center;
+  line-height: 50%;
+  border-radius: 14px;
+  width: 46px;
+  height: 46px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  transition: all 300ms;
+}
+
+.speak-icon:hover {
+  transform: translateY(2px);
 }
 
 .bounce {
