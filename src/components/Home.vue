@@ -164,7 +164,7 @@ export default {
     filterMajor (major) {
       return this.result.filter(candidate =>
         candidate.major === major && candidate.interviewRef !== this.exclude
-      ).sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
+      )
     }
   },
   watch: {
@@ -229,11 +229,11 @@ export default {
 
 .search-input {
   border-radius: 0 20px 20px 0 !important;
-  padding-right: 42px;
+  padding-right: 42px !important;
 }
 
 .search-icon {
-  border-radius: 20px 0 0 20px;
+  border-radius: 20px 0 0 20px !important;
 }
 
 .speak-icon {

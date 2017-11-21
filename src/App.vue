@@ -1,9 +1,9 @@
 <template>
   <div class="app">
     <transition name="fade">
-      <button @click="backToTop" v-if="showing" class="btn btn-warning my-btn floating-button">
+      <b-btn @click="backToTop" v-if="showing" variant="warning" class="my-btn floating-button">
         <icon class="text-center" name="angle-up" scale="2.4"></icon>
-      </button>
+      </b-btn>
     </transition>
     <router-view/>
   </div>
@@ -30,12 +30,22 @@ export default {
         history.scrollRestoration = 'auto'
       }
     }
+
     window.addEventListener('scroll', this.handleScroll)
-    this.setResult((await axios.get(API_URL)).data)
+
+    try {
+      const result = (await axios.get(API_URL)).data
+      const sortedResult = result.sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
+      this.setResult(sortedResult)
+    } catch (e) {}
+
     this.setLoading(false)
   },
   methods: {
-    ...mapActions(['setResult', 'setLoading']),
+    ...mapActions([
+      'setResult',
+      'setLoading'
+    ]),
     handleScroll () {
       this.showing = window.scrollY >= 500
     },
@@ -57,7 +67,7 @@ export default {
   cursor: pointer;
   text-align: center;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
-  transition: all 300ms;
+  transition: all 300ms !important;
 }
 
 .my-btn:hover {
@@ -66,14 +76,14 @@ export default {
 
 .floating-button {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  border-radius: 25px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 25px !important;
   width: 50px;
   height: 50px;
   color: white !important;
   z-index: 4;
-  padding-top: 0.2em;
+  padding-top: 0.2em !important;
 }
 
 .fade-enter-active, .fade-leave-active {
