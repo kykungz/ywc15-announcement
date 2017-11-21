@@ -31,7 +31,7 @@
           <icon v-show="search" name="times-circle" scale="1.4"></icon>
         </span>
 
-        <b-button @click="speechToggle" variant="primary" class="my-btn speak-icon">
+        <b-button ref="speechToggle" @click="speechToggle" variant="primary" class="my-btn speak-icon">
           <scale-loader v-if="listening" width="2px" height="16px" color="white"></scale-loader>
           <icon v-else name="microphone" scale="1.4"></icon>
         </b-button>
@@ -115,7 +115,7 @@ export default {
       recognition.onstart = (event) => { this.listening = true }
       this.recognition = recognition
     } catch (e) {
-      this.$refs.speechToggle.$el.disabled = true
+      this.$refs.speechToggle.disabled = true
     }
   },
   computed: {

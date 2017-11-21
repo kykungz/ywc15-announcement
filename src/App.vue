@@ -58,8 +58,6 @@ export default {
 
 <style>
 .app {
-  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-  /*color: #dddddd;*/
   font-family: 'Kanit', sans-serif;
 }
 
@@ -112,11 +110,11 @@ export default {
 }
 
 .light {
-  font-weight: 200;
+  font-weight: 200 !important;
 }
 
 .medium {
-  font-weight: 300;
+  font-weight: 300 !important;
 }
 
 .logo {
