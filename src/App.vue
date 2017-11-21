@@ -2,7 +2,7 @@
   <div class="app">
     <transition name="fade">
       <b-btn @click="backToTop" v-if="showing" variant="warning" class="my-btn floating-button">
-        <icon class="text-center" name="angle-up" scale="2.4"></icon>
+        <icon class="text-center" name="angle-up" scale="2.7"></icon>
       </b-btn>
     </transition>
     <router-view/>
@@ -66,7 +66,7 @@ export default {
 .my-btn {
   cursor: pointer;
   text-align: center;
-  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.3);
   transition: all 300ms !important;
 }
 
@@ -76,11 +76,11 @@ export default {
 
 .floating-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border-radius: 25px !important;
-  width: 50px;
-  height: 50px;
+  bottom: 16px;
+  right: 16px;
+  border-radius: 27px !important;
+  width: 54px;
+  height: 54px;
   color: white !important;
   z-index: 4;
   padding-top: 0.2em !important;
