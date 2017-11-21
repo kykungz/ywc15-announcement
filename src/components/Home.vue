@@ -113,11 +113,9 @@ export default {
       }
       recognition.onend = (event) => { this.listening = false }
       recognition.onstart = (event) => { this.listening = true }
-
       this.recognition = recognition
     } catch (e) {
-      console.log(e)
-      this.$refs.speakButton.disabled = true
+      this.$refs.speechToggle.disabled = true
     }
   },
   computed: {
