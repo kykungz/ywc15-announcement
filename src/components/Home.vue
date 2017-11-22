@@ -3,7 +3,7 @@
   <!-- Welcome -->
   <div :style="bg" class="full-height">
     <div class="text-center">
-      <img style="max-height: 90px; margin-top: 20px;" class="img-fluid logo" src="static/images/logo.png" alt="">
+      <img style="max-height: 90px; margin-top: 20px;" class="img-fluid logo" src="static/images/logo.png" alt="logo">
     </div>
     <div style="padding-top: 40px" class="center-block text-center container">
       <h1 class="display-5 light">สิ้นสุดการรอคอย !!</h1>
@@ -31,7 +31,7 @@
           <icon v-show="search" name="times-circle" scale="1.4"></icon>
         </span>
 
-        <b-button ref="speechToggle" @click="speechToggle" variant="primary" class="my-btn speak-icon">
+        <b-button ref="speechToggle" @click="speechToggle" variant="primary" name="speak" class="my-btn speak-icon">
           <scale-loader v-if="listening" width="2px" height="16px" color="white"></scale-loader>
           <icon v-else name="microphone" scale="1.4"></icon>
         </b-button>
@@ -52,6 +52,7 @@
             :src="`static/images/${major}.png`"
             width="160px"
             class="img-fluid rounded-circle dark-bg"
+            :alt="major"
           >
           <br>
           <h4>{{ major.substr(0, 1).toUpperCase() + major.substr(1) }}</h4>

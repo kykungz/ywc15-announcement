@@ -42,7 +42,7 @@
         </tr>
       </thead>
       <tbody :class="{ cheer: isFound }">
-        <tr :tabindex="isFound ? null : 1" onclick="this.focus()"
+        <tr :tabindex="isFound ? null : 0" onclick="this.focus()"
           class="tr-content" v-for="candidate in list"
         >
           <td>{{ candidate.interviewRef }}</td>
