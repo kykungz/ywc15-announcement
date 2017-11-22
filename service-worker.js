@@ -34,7 +34,7 @@ var precacheConfig = [
   ignoreUrlParametersMatching = [/^utm_/],
   addDirectoryIndex = function(e, t) {
     var a = new URL(e);
-    return "./" === a.pathname.slice(-1) && (a.pathname += t), a.toString()
+    return "ywc15-announcement/" === a.pathname.slice(-1) && (a.pathname += t), a.toString()
   },
   cleanResponse = function(e) {
     if (!e.redirected) return Promise.resolve(e);
