@@ -82,16 +82,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import { decrypt } from '@/libraries/functions'
-const ScaleLoader = () => import('vue-spinner/src/ScaleLoader.vue')
-const List = () => import('@/components/List')
-const Information = () => import('@/components/Information')
-const Prank = () => import('@/components/Prank')
-const Reminder = () => import('@/components/Reminder')
-// import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
-// import List from '@/components/List'
-// import Information from '@/components/Information'
-// import Prank from '@/components/Prank'
-// import Reminder from '@/components/Reminder'
+import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
+import List from '@/components/List'
+import Information from '@/components/Information'
+import Prank from '@/components/Prank'
+import Reminder from '@/components/Reminder'
 
 export default {
   name: 'Home',
@@ -110,9 +105,6 @@ export default {
     }
   },
   mounted () {
-    if (this.$route.query.id) {
-      this.$SmoothScroll(this.$refs.searchBar, 500)
-    }
     try {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
       const recognition = new SpeechRecognition()

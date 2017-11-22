@@ -13,7 +13,7 @@
 import axios from 'axios'
 import { mapActions } from 'vuex'
 import { API_URL } from '@/libraries/constants'
-
+import serviceWorker from '@/libraries/serviceWorker'
 export default {
   name: 'app',
   data () {
@@ -22,10 +22,13 @@ export default {
     }
   },
   async mounted () {
+    serviceWorker.init()
+
     // prevent autoscroll to previous position when refesh
     if ('scrollRestoration' in history) {
       if (this.$route.query.id) {
         history.scrollRestoration = 'manual'
+        this.$SmoothScroll(document.body.scrollHeight, 500)
       } else {
         history.scrollRestoration = 'auto'
       }
@@ -36,8 +39,11 @@ export default {
     try {
       const result = (await axios.get(API_URL)).data
       const sortedResult = result.sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
+      window.localStorage.setItem('result', JSON.stringify(sortedResult))
       this.setResult(sortedResult)
-    } catch (e) {}
+    } catch (e) {
+      this.setResult(JSON.parse(window.localStorage.getItem('result')) || [])
+    }
 
     this.setLoading(false)
   },
