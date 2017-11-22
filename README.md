@@ -1,4 +1,6 @@
 # การบ้านสาขาโปรแกรมมิ่ง Young Webmaster Camp 15th
+> Reference: https://ywc15.ywc.in.th/
+>
 > ให้เขียน เว็บไซต์ประกาศผลผู้ผ่านเข้ารอบสัมภาษณ์ของ YWC#15 โดยใช้ข้อมูลจาก API โดยมี Feature ดังนี้
 > * ดึงข้อมูลจาก API โดยตรง
 > * ให้แสดงผลแยกแต่ละสาขา
@@ -8,23 +10,25 @@
 > เมื่อทำเสร็จแล้วให้ Push Source Code ขึ้น GitHub ก่อนเวลาสัมภาษณ์
 
 ### PG39	กองภณ	จรัญวัฒนากิจ	Programming
+Link: https://kykungz.github.io/ywc15-announcement
 ## Feature
-- คลิกที่วันที่เพื่อเปิด Calendar
-- Google Map
-- คลิกที่สาขาเพื่อ Scroll
-- CSS บน Table
-- Search โดย รหัส ชื่อจริง นามสกุล และ สาขา
-- ข้อความเมื่อ Search ไม่พบ
-- Loading screen ขณะเชื่อมต่อ API
-- Animation เมื่อ Search พบผลลัพธ์คนเดียว
-- Speech-to-text เพื่อค้นหาผู้ผ่านเข้ารอบ
-- ปุ่ม Back to top
-- Share ไปที่ Facebook และ Twitter
-- Share หน้าเว็บที่แสดงชื่อคนที่ต้องการ
-- Feature ซ่อนชื่อเพื่อนจากหน้าเว็บและการค้นหา (prank)
+- [x] คลิกที่วันที่เพื่อเปิด Calendar
+- [x] Google Map
+- [x] คลิกที่สาขาเพื่อ Scroll
+- [x] CSS บน Table
+- [x] Search โดย รหัส ชื่อจริง นามสกุล และ สาขา
+- [x] ข้อความเมื่อ Search ไม่พบ
+- [x] Loading screen ขณะเชื่อมต่อ API
+- [x] Animation เมื่อ Search พบผลลัพธ์คนเดียว
+- [x] Speech-to-text เพื่อค้นหาผู้ผ่านเข้ารอบ (Speech Recognition API)
+- [x] ปุ่ม Back to top
+- [x] Share ไปที่ Facebook และ Twitter
+- [x] Share หน้าเว็บที่แสดงชื่อคนที่ต้องการ
+- [x] Feature ซ่อนชื่อเพื่อนจากหน้าเว็บและการค้นหา (Prank)
+- [x] Offline mode (Service Worker Cache + Local Storage)
+- [ ] แจ้งเตือน (Push Notification API)
 
 ## Build Setup
-
 ``` bash
 # install dependencies
 npm install
