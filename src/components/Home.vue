@@ -31,7 +31,7 @@
           <icon v-show="search" name="times-circle" scale="1.4"></icon>
         </span>
 
-        <b-button ref="speechToggle" @click="speechToggle" variant="primary" name="speak" class="my-btn speak-icon">
+        <b-button ref="speechToggle" @click="speechToggle" variant="primary" role="button" aria-label="speak" class="my-btn speak-icon">
           <scale-loader v-if="listening" width="2px" height="16px" color="white"></scale-loader>
           <icon v-else name="microphone" scale="1.4"></icon>
         </b-button>
@@ -70,7 +70,11 @@
   </div>
 
   <!-- Prank -->
-  <prank :candidate="filtered.length === 1 ? filtered[0] : null"></prank>
+  <b-container class="text-right">
+    <!-- <reminder></reminder> -->
+    <prank :candidate="filtered.length === 1 ? filtered[0] : null"></prank>
+  </b-container>
+
 
 </div>
 </template>
@@ -78,14 +82,20 @@
 <script>
 import { mapGetters } from 'vuex'
 import { decrypt } from '@/libraries/functions'
-import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
-import List from '@/components/List'
-import Information from '@/components/Information'
-import Prank from '@/components/Prank'
+const ScaleLoader = () => import('vue-spinner/src/ScaleLoader.vue')
+const List = () => import('@/components/List')
+const Information = () => import('@/components/Information')
+const Prank = () => import('@/components/Prank')
+const Reminder = () => import('@/components/Reminder')
+// import ScaleLoader from 'vue-spinner/src/ScaleLoader.vue'
+// import List from '@/components/List'
+// import Information from '@/components/Information'
+// import Prank from '@/components/Prank'
+// import Reminder from '@/components/Reminder'
 
 export default {
   name: 'Home',
-  components: { List, Information, Prank, ScaleLoader },
+  components: { List, Information, Prank, Reminder, ScaleLoader },
   data () {
     return {
       // Use inline-style object to avoid webpack resolve incorrect URL
