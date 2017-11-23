@@ -21,20 +21,8 @@ export default {
       showing: false
     }
   },
-  async mounted () {
+  async created () {
     serviceWorker.init()
-
-    // prevent autoscroll to previous position when refesh
-    if ('scrollRestoration' in history) {
-      if (this.$route.query.id) {
-        history.scrollRestoration = 'manual'
-        this.$SmoothScroll(document.body.scrollHeight, 500)
-      } else {
-        history.scrollRestoration = 'auto'
-      }
-    }
-
-    window.addEventListener('scroll', this.handleScroll)
 
     try {
       const result = (await axios.get(API_URL)).data
@@ -46,6 +34,19 @@ export default {
     }
 
     this.setLoading(false)
+  },
+  async mounted () {
+    // prevent autoscroll to previous position when refesh
+    if ('scrollRestoration' in history) {
+      if (this.$route.query.id) {
+        history.scrollRestoration = 'manual'
+        this.$SmoothScroll(document.body.scrollHeight, 500)
+      } else {
+        history.scrollRestoration = 'auto'
+      }
+    }
+
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
     ...mapActions([

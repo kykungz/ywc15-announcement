@@ -96,7 +96,8 @@ export default {
       // Use inline-style object to avoid webpack resolve incorrect URL
       bg: {
         background: `url('static/images/bg-front.png') repeat, url('static/images/bg.png') repeat`,
-        backgroundSize: 'contain'
+        backgroundSize: 'contain',
+        backgroundColor: '#212730'
       },
       search: this.$route.query.id || '',
       exclude: decrypt(this.$route.query.result) || '',
