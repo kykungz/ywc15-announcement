@@ -11,6 +11,7 @@
 
 ### PG39	กองภณ	จรัญวัฒนากิจ	Programming
 Link: https://kykungz.github.io/ywc15-announcement
+
 ## Feature
 - [x] คลิกที่วันที่เพื่อเปิด Calendar
 - [x] Google Map
@@ -28,6 +29,7 @@ Link: https://kykungz.github.io/ywc15-announcement
 - [x] Offline mode (Service Worker Cache + Local Storage)
 - [x] ~~Lazy loading image~~
 - [ ] แจ้งเตือน (Push Notification API)
+
 ## Build Setup
 ``` bash
 # install dependencies
