@@ -10,6 +10,7 @@ import BootstrapVue from 'bootstrap-vue'
 import Icon from 'vue-awesome/components/Icon'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import vueSmoothScroll from 'vue-smoothscroll'
+import VueLazyload from 'vue-lazyload'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -21,6 +22,13 @@ Vue.use(VueGoogleMaps, {
     libraries: 'places'
   }
 })
+
+Vue.use(VueLazyload)
+//
+// // or with options
+// Vue.use(VueLazyload, {
+//   loading: 'static/images/rolling.svg'
+// })
 Vue.use(SocialSharing)
 Vue.use(BootstrapVue)
 Vue.use(vueSmoothScroll)

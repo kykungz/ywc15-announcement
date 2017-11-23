@@ -49,7 +49,7 @@
           cols="6" md="3" :key="index"
         >
           <img @click="scrollTo(`${major}Major`)"
-            :src="`static/images/${major}.png`"
+            v-lazy="`static/images/${major}.png`"
             width="160px"
             class="img-fluid rounded-circle dark-bg"
             :alt="major"

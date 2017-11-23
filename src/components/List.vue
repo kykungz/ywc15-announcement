@@ -17,7 +17,7 @@
   <div class="major">
     <b-container>
       <h2>
-        <img v-if="img" :src="img" class="img-fluid rounded-circle" width="60px" alt="">
+        <img v-if="img" v-lazy="img" class="img-fluid rounded-circle" width="60px" alt="">
         {{ major }}
       </h2>
       <hr>
