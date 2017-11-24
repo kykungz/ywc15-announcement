@@ -72,7 +72,7 @@
   <!-- Prank -->
   <b-container class="text-right">
     <!-- <reminder></reminder> -->
-    <prank :candidate="filtered.length === 1 ? filtered[0] : null"></prank>
+    <prank v-if="!$route.query.result" :candidate="filtered.length === 1 ? filtered[0] : null"></prank>
   </b-container>
 
 
