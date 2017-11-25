@@ -29,10 +29,23 @@ export default {
     serviceWorker.init()
 
     try {
-      const result = (await axios.get(API_URL)).data
-      const sortedResult = result.sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
-      window.localStorage.setItem('result', JSON.stringify(sortedResult))
-      this.setResult(sortedResult)
+      const response = (await axios.get(API_URL)).data
+      const cutoffs = {
+        'CT': 'CT25',
+        'DS': 'DS20',
+        'MK': 'MK18',
+        'PG': 'PG23'
+      }
+      const result = response
+        .sort((a, b) => a.interviewRef.localeCompare(b.interviewRef))
+        .map(candidate => {
+          const time = candidate.interviewRef <= cutoffs[candidate.interviewRef.substring(0, 2)]
+            ? 'เช้า'
+            : 'บ่าย'
+          return { ...candidate, time }
+        })
+      window.localStorage.setItem('result', JSON.stringify(result))
+      this.setResult(result)
     } catch (e) {
       this.setResult(JSON.parse(window.localStorage.getItem('result')) || [])
     }

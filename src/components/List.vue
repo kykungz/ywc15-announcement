@@ -51,7 +51,7 @@
           <td>
             {{ candidate.major.substr(0, 1).toUpperCase() + candidate.major.substr(1) }}
           </td>
-          <td>บ่าย</td>
+          <td>{{ candidate.time }}</td>
           <td style="padding-top: 6px">
             <social-sharing inline-template
               :url="`https://kykungz.github.io/ywc15-announcement/#/?id=${candidate.interviewRef}`"
