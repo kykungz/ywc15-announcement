@@ -6,6 +6,10 @@
       </b-btn>
     </transition>
     <router-view/>
+    <hr>
+    <b-container>
+      <p class="text-muted">Made by <a href="https://github.com/kykungz/ywc15-announcement">Kongpon C.</a></p>
+    </b-container>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
 <div class="place">
-  <div class="container">
+  <b-container>
     <h3 class="light text-center">
       การสัมภาษณ์จะจัดขึ้นในวันที่
       <datepicker
@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </b-container>
 </div>
 </template>
 
