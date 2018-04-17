@@ -30,6 +30,7 @@ export default {
 
     try {
       const response = (await axios.get(API_URL)).data
+      console.log(response)
       const cutoffs = {
         'CT': 'CT25',
         'DS': 'DS20',

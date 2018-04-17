@@ -6,4 +6,4 @@ export const BASE_URL = process.env.NODE_ENV === 'production'
   OLD API_URL
   export const API_URL = 'https://ywc15.ywc.in.th/api/interview'
  */
-export const API_URL = 'https://raw.githubusercontent.com/kykungz/ywc15-announcement/master/package.json'
+export const API_URL = 'https://raw.githubusercontent.com/kykungz/ywc15-announcement/master/src/libraries/mockingData.json'
